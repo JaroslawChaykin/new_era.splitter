@@ -1,18 +1,25 @@
 <template>
-  <section>
-    hello world
+  <section class="splitter-container light-grayish-cyan-bg">
+    <div class="splitter-box">
+      <splitter-calculator/>
+      <splitter-total/>
+    </div>
   </section>
 </template>
 
 <script>
 
+import SplitterCalculator from '@/components/SplitterCalculator';
+import SplitterTotal from '@/components/SplitterTotal';
 export default {
   name: 'App',
-  components: {}
-}
+  components: {SplitterTotal, SplitterCalculator}
+};
 </script>
 
 <style>
+@import './assets/colors.css';
+
 @font-face {
   font-family: "SpaceMono-Bold";
   src: local("SpaceMono-Bold"),
@@ -24,14 +31,18 @@ export default {
   box-sizing: border-box;
   font-family: SpaceMono-Bold, sans-serif
 }
-/*Very dark cyan: hsl(183, 100%, 15%)*/
-/*Dark grayish cyan: hsl(186, 14%, 43%)*/
-/*Grayish cyan: hsl(184, 14%, 56%)*/
-/*Light grayish cyan: hsl(185, 41%, 84%)*/
-/*Very light grayish cyan: hsl(189, 41%, 97%)*/
-/*White: hsl(0, 0%, 100%)*/
+.splitter-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* Primary */
-
-/*- Strong cyan: hsl(172, 67%, 45%)*/
+.splitter-box {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+}
 </style>
