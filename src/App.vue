@@ -41,8 +41,10 @@ export default {
 }
 
 .splitter-box {
+  display: flex;
   background: white;
   padding: 25px;
   border-radius: 20px;
+  width: 80%;
 }
 </style>

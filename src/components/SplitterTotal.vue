@@ -1,20 +1,53 @@
 <template>
-  <div class="splitter-total dark-cyan-text">
-    <IconInput/>
+  <div class="splitter-total dark-cyan-text dark-cyan-bg">
+    <div class="total-info">
+      <div class="result-info tip-amount">
+        <div class="title">
+          <h5 class="text light-grayish-cyan-text">Tip amount</h5>
+          <h6 class="subtext dark-grayish-cyan-text">/ person</h6>
+        </div>
+        <div class="result strong-cyan-text">
+          $42.27
+        </div>
+      </div>
+      <div class="result-info total">
+        <div class="title">
+          <h5 class="text light-grayish-cyan-text">Total</h5>
+          <h6 class="subtext dark-grayish-cyan-text">/ person</h6>
+        </div>
+        <div class="result strong-cyan-text">
+            $4.27
+        </div>
+      </div>
+    </div>
+    <SplitterButton text="RESET" variant="strong"  />
   </div>
 </template>
 
 <script>
-import IconInput from '@/components/IconInput';
+import SplitterButton from '@/components/SplitterButton';
 export default {
   name: 'SplitterTotal',
-  components: {IconInput},
+  components: {SplitterButton},
   methods: {}
 };
 </script>
 
 <style scoped>
 .splitter-total {
-  width: 100px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+  padding: 40px 30px;
+}
+.result-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.result {
+  font-size: 48px;
 }
 </style>
