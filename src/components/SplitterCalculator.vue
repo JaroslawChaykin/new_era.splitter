@@ -2,24 +2,24 @@
   <div class="splitter-calculator">
     <div class="calc-type bill">
       <h5 class="grayish-cyan-text">Bill</h5>
-      <IconInput placeholder="0" typeIcon="dollar"/>
+      <IconInput placeholder="0" typeIcon="dollar" :cb="billValue"/>
     </div>
     <div class="calc-type tip">
       <h5 class="grayish-cyan-text">Select tip %</h5>
       <div class="tips">
         <SplitterButton v-for="tip of tips"
                         :key="tip"
-                        :text="tip"
+                        :text="`${tip}%`"
                         :variant="selectedTip === tip ? 'strong' : ''"
                         @click="selectTip(tip)"
         />
         <IconInput placeholder="Custom"
-                   :cb="customTip" />
+                   :cb="selectTip" />
       </div>
     </div>
     <div class="calc-type number-of-people">
       <h5 class="grayish-cyan-text">Number of people</h5>
-      <IconInput placeholder="0" typeIcon="person"/>
+      <IconInput placeholder="0" typeIcon="person" :cb="peopleValue"/>
     </div>
   </div>
 </template>
@@ -30,19 +30,24 @@ import SplitterButton from '@/components/SplitterButton';
 export default {
   name: 'SplitterCalculator',
   components: {SplitterButton, IconInput},
+  props: ['appendBillValue', 'appendPeopleValue', 'appendTipValue'],
   data() {
     return {
-      tips: ['5%', '10%', '15%', '25%', '50%'],
-      selectedTip: ''
+      tips: ['5', '10', '15', '25', '50'],
+      selectedTip: '',
     }
   },
   methods: {
+    billValue(value) {
+      this.appendBillValue(value)
+    },
+    peopleValue(value) {
+      this.appendPeopleValue(value)
+    },
     selectTip(tip) {
       this.selectedTip = tip
+      this.appendTipValue(this.selectedTip)
     },
-    customTip(value) {
-      this.selectedTip = value
-    }
   }
 };
 </script>

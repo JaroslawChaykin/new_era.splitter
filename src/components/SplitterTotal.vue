@@ -7,7 +7,7 @@
           <h6 class="subtext dark-grayish-cyan-text">/ person</h6>
         </div>
         <div class="result strong-cyan-text">
-          $42.27
+          ${{ amount.toFixed(2) }}
         </div>
       </div>
       <div class="result-info total">
@@ -16,20 +16,26 @@
           <h6 class="subtext dark-grayish-cyan-text">/ person</h6>
         </div>
         <div class="result strong-cyan-text">
-            $4.27
+          ${{ total.toFixed(2) }}
         </div>
       </div>
     </div>
-    <SplitterButton text="RESET" variant="strong"  />
+    <SplitterButton text="RESET" variant="strong" :cb="resetValues"/>
   </div>
 </template>
 
 <script>
 import SplitterButton from '@/components/SplitterButton';
+
 export default {
   name: 'SplitterTotal',
+  props: ['total', 'amount', 'reset'],
   components: {SplitterButton},
-  methods: {}
+  methods: {
+    resetValues() {
+      this.reset()
+    }
+  }
 };
 </script>
 
@@ -42,11 +48,13 @@ export default {
   border-radius: 20px;
   padding: 40px 30px;
 }
+
 .result-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .result {
   font-size: 48px;
 }

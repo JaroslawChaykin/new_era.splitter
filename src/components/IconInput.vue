@@ -22,7 +22,6 @@ export default {
   },
   methods: {
     setFocusToEnd() {
-      if(this.cb) this.cb(this.value)
       let momentValue = this.value
       this.value = ''
       setTimeout(() => {
@@ -30,6 +29,11 @@ export default {
       }, 0);
     }
   },
+  watch: {
+    value() {
+      if(this.cb) this.cb(this.value)
+    }
+  }
 };
 </script>
 

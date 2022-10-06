@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     selectedType() {
-      console.log(this.type);
       return this.selectedType = this.typesIcon[this.type]
     }
   }
