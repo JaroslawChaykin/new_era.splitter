@@ -1,8 +1,8 @@
 <template>
   <div class="icon-input">
-    <SplitterIcon class="icon" v-if="typeIcon" :type="typeIcon" />
-    <input v-model="value"
-           @click="setFocusToEnd"
+    <SplitterIcon class="icon" v-if="typeIcon" :type="typeIcon"/>
+    <input :value="value || ''"
+           @input="change"
            class="input very-light-grayish-cyan-bg dark-cyan-text"
            :placeholder="placeholder"
            type="text">
@@ -10,28 +10,16 @@
 </template>
 
 <script>
+
 import SplitterIcon from '@/components/SplitterIcon';
+
 export default {
   name: 'IconInput',
   components: {SplitterIcon},
-  props: ['cb', 'placeholder', 'typeIcon'],
-  data() {
-    return {
-      value: ''
-    }
-  },
+  props: ['placeholder', 'typeIcon', 'value', 'cb'],
   methods: {
-    setFocusToEnd() {
-      let momentValue = this.value
-      this.value = ''
-      setTimeout(() => {
-        this.value = momentValue
-      }, 0);
-    }
-  },
-  watch: {
-    value() {
-      if(this.cb) this.cb(this.value)
+    change(e) {
+      this.cb(e.target.value)
     }
   }
 };
@@ -43,11 +31,13 @@ export default {
   display: flex;
   position: relative;
 }
+
 .icon {
   position: absolute;
   top: calc(50% - 11px);
   left: 15px;
 }
+
 .input {
   width: 100%;
   padding: 5px 12px;
@@ -57,6 +47,7 @@ export default {
   text-align: right;
   cursor: pointer;
 }
+
 .input:focus {
   border: 2px solid hsl(172, 67%, 45%);
   outline: hsl(172, 67%, 45%);

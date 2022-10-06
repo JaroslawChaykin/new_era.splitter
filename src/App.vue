@@ -1,10 +1,15 @@
 <template>
   <section class="splitter-container light-grayish-cyan-bg">
     <div class="splitter-box">
-      <splitter-calculator :appendBillValue="billValue"
-                           :appendPeopleValue="peopleValue"
-                           :appendTipValue="tipValue"/>
-      <splitter-total :total="calcTotal" :amount="calcAmount"/>
+      <splitter-calculator :bill="bill"
+                           :changeBill="changeBill"
+                           :people="people"
+                           :changePeople="changePeople"
+                           :tip="tip"
+                           :changeTip="changeTip"
+
+      />
+      <splitter-total :total="calcTotal" :amount="calcAmount" :reset="reset"/>
     </div>
   </section>
 </template>
@@ -22,33 +27,37 @@ export default {
       bill: 0,
       people: 0,
       tip: 0
-    }
+    };
   },
   computed: {
-    calcTotal() {
-      if(this.bill && this.people) {
-        return ((this.bill / this.people) + this.calcAmount)
-      }
-      return 0
-    },
     calcAmount() {
-      return ((this.bill / 100) * this.tip)
-    }
+      return ((this.bill / 100) * this.tip);
+    },
+    sumOfBillAndAmount() {
+      return +this.bill + +this.calcAmount
+    },
+    calcTotal() {
+      if (this.sumOfBillAndAmount && this.people) {
+        return this.sumOfBillAndAmount / this.people;
+      }
+      return 0;
+    },
+
   },
   methods: {
-    billValue(value) {
-      this.bill = value
+    changeBill(value) {
+      this.bill = value;
     },
-    peopleValue(value) {
-      this.people = value
+    changePeople(value) {
+      this.people = value;
     },
-    tipValue(value) {
-      this.tip = value
+    changeTip(value) {
+      this.tip = value;
     },
     reset() {
-      this.bill = 0
-      this.people = 0
-      this.tip = 0
+      this.bill = 0;
+      this.people = 0;
+      this.tip = 0;
     }
   }
 };

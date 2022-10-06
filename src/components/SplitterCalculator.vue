@@ -2,16 +2,16 @@
   <div class="splitter-calculator">
     <div class="calc-type bill">
       <h5 class="grayish-cyan-text">Bill</h5>
-      <IconInput placeholder="0" typeIcon="dollar" :cb="billValue"/>
+      <IconInput placeholder="0" typeIcon="dollar" :value="bill" :cb="changeBill"/>
     </div>
     <div class="calc-type tip">
       <h5 class="grayish-cyan-text">Select tip %</h5>
       <div class="tips">
-        <SplitterButton v-for="tip of tips"
-                        :key="tip"
-                        :text="`${tip}%`"
-                        :variant="selectedTip === tip ? 'strong' : ''"
-                        @click="selectTip(tip)"
+        <SplitterButton v-for="t of tips"
+                        :key="t"
+                        :text="`${t}%`"
+                        :variant="tip === t ? 'strong' : ''"
+                        @click="selectTip(t)"
         />
         <IconInput placeholder="Custom"
                    :cb="selectTip" />
@@ -19,7 +19,7 @@
     </div>
     <div class="calc-type number-of-people">
       <h5 class="grayish-cyan-text">Number of people</h5>
-      <IconInput placeholder="0" typeIcon="person" :cb="peopleValue"/>
+      <IconInput placeholder="0" typeIcon="person" :value="people" :cb="changePeople"/>
     </div>
   </div>
 </template>
@@ -30,25 +30,17 @@ import SplitterButton from '@/components/SplitterButton';
 export default {
   name: 'SplitterCalculator',
   components: {SplitterButton, IconInput},
-  props: ['appendBillValue', 'appendPeopleValue', 'appendTipValue'],
+  props: ['bill', 'changeBill', 'people', 'changePeople', 'tip', 'changeTip'],
   data() {
     return {
       tips: ['5', '10', '15', '25', '50'],
-      selectedTip: '',
     }
   },
   methods: {
-    billValue(value) {
-      this.appendBillValue(value)
-    },
-    peopleValue(value) {
-      this.appendPeopleValue(value)
-    },
     selectTip(tip) {
-      this.selectedTip = tip
-      this.appendTipValue(this.selectedTip)
+      this.changeTip(tip)
     },
-  }
+  },
 };
 </script>
 
