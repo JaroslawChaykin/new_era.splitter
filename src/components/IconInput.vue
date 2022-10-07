@@ -2,6 +2,10 @@
   <div class="icon-input">
     <SplitterIcon class="icon" v-if="typeIcon" :type="typeIcon"/>
     <input :value="value || ''"
+           :style="{
+              borderColor: required && !value ? 'red' : ''
+           }"
+
            @input="change"
            class="input very-light-grayish-cyan-bg dark-cyan-text"
            :placeholder="placeholder"
@@ -16,7 +20,7 @@ import SplitterIcon from '@/components/SplitterIcon';
 export default {
   name: 'IconInput',
   components: {SplitterIcon},
-  props: ['placeholder', 'typeIcon', 'value', 'cb'],
+  props: ['placeholder', 'typeIcon', 'value', 'cb', 'required'],
   methods: {
     change(e) {
       this.cb(e.target.value)

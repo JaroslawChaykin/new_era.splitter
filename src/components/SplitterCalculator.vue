@@ -1,8 +1,15 @@
 <template>
   <div class="splitter-calculator">
     <div class="calc-type bill">
-      <h5 class="grayish-cyan-text">Bill</h5>
-      <IconInput placeholder="0" typeIcon="dollar" :value="bill" :cb="changeBill"/>
+      <div class="title-input">
+        <h5 class="grayish-cyan-text">Bill</h5>
+        <span v-if="!bill" class="error">Is required</span>
+      </div>
+      <IconInput placeholder="0"
+                 :required="true"
+                 typeIcon="dollar"
+                 :value="bill"
+                 :cb="changeBill"/>
     </div>
     <div class="calc-type tip">
       <h5 class="grayish-cyan-text">Select tip %</h5>
@@ -18,8 +25,15 @@
       </div>
     </div>
     <div class="calc-type number-of-people">
-      <h5 class="grayish-cyan-text">Number of people</h5>
-      <IconInput placeholder="0" typeIcon="person" :value="people" :cb="changePeople"/>
+      <div class="title-input">
+        <h5 class="grayish-cyan-text">Number of people</h5>
+        <span v-if="!people" class="error">Is required</span>
+      </div>
+      <IconInput placeholder="0"
+                 :required="true"
+                 typeIcon="person"
+                 :value="people"
+                 :cb="changePeople"/>
     </div>
   </div>
 </template>
@@ -64,6 +78,15 @@ export default {
 }
 .active {
   background: red;
+}
+.title-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title-input span {
+  font-size: 12px;
+  color: red;
 }
 h5 {
   margin-bottom: 10px;

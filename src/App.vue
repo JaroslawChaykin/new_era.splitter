@@ -7,7 +7,6 @@
                            :changePeople="changePeople"
                            :tip="tip"
                            :changeTip="changeTip"
-
       />
       <splitter-total :total="calcTotal" :amount="calcAmount" :reset="reset"/>
     </div>
