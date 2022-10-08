@@ -61,6 +61,7 @@ export default {
 @media (max-width: 768px) {
   .splitter-total {
     width: 100%;
+    row-gap: 40px;
   }
 }
 </style>
