@@ -58,4 +58,9 @@ export default {
 .result {
   font-size: 48px;
 }
+@media (max-width: 768px) {
+  .splitter-total {
+    width: 100%;
+  }
+}
 </style>

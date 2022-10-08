@@ -94,4 +94,17 @@ export default {
   border-radius: 20px;
   width: 80%;
 }
+@media (max-width: 768px) {
+  .splitter-container {
+    overflow: auto;
+    height: auto;
+    padding-top: 150px;
+  }
+  .splitter-box {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    row-gap: 40px;
+  }
+}
 </style>

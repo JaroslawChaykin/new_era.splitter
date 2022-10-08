@@ -91,4 +91,10 @@ export default {
 h5 {
   margin-bottom: 10px;
 }
+@media (max-width: 768px) {
+  .splitter-calculator {
+    width: 100%;
+    padding: 10px;
+  }
+}
 </style>

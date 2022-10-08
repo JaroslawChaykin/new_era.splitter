@@ -5,7 +5,6 @@
            :style="{
               borderColor: required && !value ? 'red' : ''
            }"
-
            @input="change"
            class="input very-light-grayish-cyan-bg dark-cyan-text"
            :placeholder="placeholder"
